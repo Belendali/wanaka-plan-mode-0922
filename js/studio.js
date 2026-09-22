@@ -14,6 +14,7 @@ const Studio = (() => {
   const shell = () => `
     <section class="stage">
       <span class="stage__sky"></span><span class="stage__grid"></span>
+      <div class="roomhost" id="roomhost" hidden></div>
       <div class="stage__bar">
         <div class="proj"><span class="proj__badge">W</span><span class="proj__name">Toy house explorer</span></div>
         <div class="stage__tools">
@@ -138,6 +139,13 @@ const Studio = (() => {
     return bar;
   };
 
+  const WORK = {
+    developer: () => Scene.wire(),                       // collision boxes and the route
+    artist: () => Scene.art(),                           // every box becomes its model
+    audio: () => Scene.music(document.querySelector('.stage')),
+    tester: () => Scene.test(4200),                      // the kid runs the course
+  };
+
   const built = () => {
     clear();
     push(el(`<div class="msg msg--you">Approve and build now</div>`));
@@ -153,7 +161,10 @@ const Studio = (() => {
       const list = push(el(`<div class="msg steps">${STEPS
         .map(([, t], i) => `<p class="step${i === 0 ? ' is-busy' : ''}"><i></i>${t}</p>`).join('')}</div>`));
       rows = [...list.querySelectorAll('.step')];
-      document.querySelector('.stage__empty').innerHTML = '<b>Building v1</b><span>The crew is at work — the room goes in piece by piece.</span>';
+      document.querySelector('.stage__empty').remove();
+      const host = document.getElementById('roomhost');
+      host.hidden = false;
+      Scene.mount(host);
       crewbar('developer');
     });
 
@@ -162,6 +173,7 @@ const Studio = (() => {
       at(900 + i * 5000, () => {
         crewbar(who);
         rows.forEach((r, k) => r.classList.toggle('is-busy', k === i));
+        WORK[who]();
       });
       at(900 + (i + 1) * 5000 - 200, () => {
         rows[i]?.classList.remove('is-busy');
@@ -172,7 +184,8 @@ const Studio = (() => {
     // version 1.0 is up
     at(900 + STEPS.length * 5000, () => {
       document.querySelector('.crew')?.remove();
-      document.querySelector('.stage__empty').innerHTML = '<b>Version 1.0</b><span>Five stars to find, one hoop to reach.</span>';
+      document.getElementById('roomhost')?.classList.add('is-built');
+      document.querySelector('.stage')?.appendChild(el('<span class="vtag">Version 1.0</span>'));
       push(el(`
         <div class="msg wana"><img src="assets/img/crew-tester.webp" alt="">
           <div><b>Tester Wana</b><p>Version 1.0 is up and it holds together — five stars to find, one hoop to reach. Give it a go.</p></div>
