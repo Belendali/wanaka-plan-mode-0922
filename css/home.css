@@ -72,3 +72,6 @@
 
 /* the tooltip, as drawn: a rule above the last line */
 .plantip em{display:block;padding-top:8px;border-top:1px dashed rgba(255,255,255,.18)}
+/* the idea box (and so the tooltip) sits above the starter chips */
+.composer{position:relative;z-index:30}
+.starters{z-index:1}
