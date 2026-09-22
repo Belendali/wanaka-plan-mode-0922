@@ -12,8 +12,11 @@ arriving on a handheld and the build starting.
    through four steps in a Deep Thinking card.
 3. **The plan** — it arrives as a card in the chat and opens by itself: a handheld
    console over the Studio, with the plan on one screen and the assets on the other.
-4. **Approve** — the console shuts, spins, and a paw takes it away. The chat says
-   the team is building v1.
+4. **Approve** — the console shuts, spins, and a paw takes it away.
+5. **The build** — the crew takes over: the Developer wires the collision boxes and
+   the route, the Artist turns every box into its model, the Musician scores it, and
+   the Tester runs the course. Only the cat working is in colour, and the room is
+   drawn in code on the canvas as it goes.
 
 ## Layout
 
@@ -26,6 +29,7 @@ arriving on a handheld and the build starting.
     js/data.js          trending games, the plan, the steps  ← swap for an API
     js/home.js          the idea box
     js/studio.js        the chat, and the scripted run        ← swap `script()` for a stream
+    js/scene.js         the room the crew builds, drawn in code
     js/console.js       the console (mount / replay / unmount)
     js/app.js           home → studio → console → build
 
