@@ -25,9 +25,9 @@
   color:var(--ink);font-size:14px;font-weight:500;line-height:normal;transition:background .15s,color .15s}
 .planbtn:hover{background:rgba(255,255,255,.2)}
 .planbtn.is-on{background:#fff;color:var(--ink-on-light)}
-.plantip{position:absolute;right:0;top:calc(100% + 10px);width:272px;padding:12px 14px;border-radius:12px;
-  background:#16161a;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.45);
-  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:5}
+.plantip{position:absolute;right:0;bottom:calc(100% + 10px);width:272px;padding:12px 14px;border-radius:12px;
+  background:#16161a;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 28px rgba(0,0,0,.5);
+  opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:20}
 .planwrap:hover .plantip,.planbtn:focus-visible + .plantip{opacity:1;visibility:visible;transform:none}
 .plantip b{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .plantip p{margin:0 0 6px;font-size:12px;line-height:18px;color:rgba(255,255,255,.66)}
