@@ -419,7 +419,7 @@ label.tf:first-of-type textarea {height:5em}
   box-shadow:inset 0 1px 1px rgba(255,255,255,.5),inset 0 -2px 2px rgba(0,0,0,.35)}
 .lid__word {position:relative;width:46%;aspect-ratio:6.49}
 .lid__word::before, .lid__word::after {content:'';position:absolute;inset:0;
-  -webkit-mask:url(assets/console/wanaka-letters.png) center/contain no-repeat;mask:url(assets/console/wanaka-letters.png) center/contain no-repeat}
+  -webkit-mask:url(../assets/console/wanaka-letters.png) center/contain no-repeat;mask:url(../assets/console/wanaka-letters.png) center/contain no-repeat}
 .lid__word::after {background:linear-gradient(180deg,#1A1B1E,#2C2D32);transform:translateY(0)}
 .lid__word::before {background:rgba(255,255,255,.22);transform:translateY(1.5px)}
 .lid__screw {position:absolute;width:1.6%;aspect-ratio:1;border-radius:50%;
@@ -587,7 +587,7 @@ label.tf:first-of-type textarea {height:5em}
 .cload__icon i {position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);
   transform:translateX(-120%)}
 .cload__word {width:34cqh;aspect-ratio:6.49;background:#E9F7B0;opacity:.9;
-  -webkit-mask:url(assets/console/wanaka-letters.png) center/contain no-repeat;mask:url(assets/console/wanaka-letters.png) center/contain no-repeat}
+  -webkit-mask:url(../assets/console/wanaka-letters.png) center/contain no-repeat;mask:url(../assets/console/wanaka-letters.png) center/contain no-repeat}
 .cload__bar {display:flex;gap:.55cqh;padding:.9cqh;border-radius:1.6cqh;background:rgba(0,0,0,.45);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
 .cload__bar i {width:2.3cqh;height:3.1cqh;border-radius:.5cqh;background:rgba(255,255,255,.07)}
@@ -866,14 +866,14 @@ label.tf:first-of-type textarea {height:5em}
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.3),inset 1px 0 0 rgba(255,255,255,.06),inset 0 -2px 0 rgba(0,0,0,.3),
     inset 0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 3px rgba(0,0,0,.08),inset 0 0 24px rgba(0,0,0,.18)}
 .lid__paws {position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
-  background:url(assets/console/paw-tile.svg) 8% 6% / 44% auto repeat;opacity:.85;
+  background:url(../assets/console/paw-tile.svg) 8% 6% / 44% auto repeat;opacity:.85;
   -webkit-mask:radial-gradient(120% 100% at 50% 45%,#000 55%,rgba(0,0,0,.35));mask:radial-gradient(120% 100% at 50% 45%,#000 55%,rgba(0,0,0,.35))}
 .room--studio .lid__badge, .room--studio .lid__word, .room--studio .lid__screw {z-index:1}
 .room--studio .lid__word {position:relative}
-.lid__paws {background:url(assets/console/paw-one.svg?v=2) no-repeat;background-size:46% auto;background-position:118% 128%;
+.lid__paws {background:url(../assets/console/paw-one.svg?v=2) no-repeat;background-size:46% auto;background-position:118% 128%;
   -webkit-mask:none;mask:none;opacity:1}
 .lid__paws {background-size:30% auto;background-position:9% 9%}
-.lid__paws {background-image:url(assets/console/paw-one.svg?v=3);background-size:20% auto;background-position:87% 91%}
+.lid__paws {background-image:url(../assets/console/paw-one.svg?v=3);background-size:20% auto;background-position:87% 91%}
 .room.is-leaving .ts, .room.is-leaving .regen {pointer-events:none}
 .room.is-leaving .con__lid {animation:lidClose .8s cubic-bezier(.5,0,.3,1) .1s both}
 @keyframes lidClose{from{transform:rotateY(0deg)}to{transform:translateZ(22px) rotateY(180deg)}}
@@ -925,7 +925,7 @@ label.tf:first-of-type textarea {height:5em}
 }
 .con__paw img {display:block;width:100%}
 .paw__arm {position:absolute;left:0;right:0;top:calc(100% - 2px);height:160vh;
-  background:url(assets/console/paw-arm.png) center top / 100% auto repeat-y}
+  background:url(../assets/console/paw-arm.png) center top / 100% auto repeat-y}
 .lid__deco {display:none}
 .con__glass--game #congame {object-fit:cover}
 .room--wide .con {width:min(88%,calc((100vh - 170px) * 3.38))}
@@ -956,7 +956,7 @@ label.tf:first-of-type textarea {height:5em}
 .deco__id em {font-style:normal}
 .deco__word {display:block;width:11em;aspect-ratio:6.49;position:relative}
 .deco__word::before, .deco__word::after {content:'';position:absolute;inset:0;
-  -webkit-mask:url(assets/console/wanaka-letters.png) left center/contain no-repeat;mask:url(assets/console/wanaka-letters.png) left center/contain no-repeat}
+  -webkit-mask:url(../assets/console/wanaka-letters.png) left center/contain no-repeat;mask:url(../assets/console/wanaka-letters.png) left center/contain no-repeat}
 .deco__word::after {background:rgba(0,0,0,.42)}
 .deco__word::before {background:rgba(255,255,255,.2);transform:translateY(1.5px)}
 .deco__stripes {display:flex;flex-direction:column;gap:5px;margin-top:.5em}
