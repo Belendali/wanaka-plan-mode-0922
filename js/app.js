@@ -1,7 +1,10 @@
 /* The run: home → the team drafts the plan → the console opens → approve → build. */
 (() => {
   const screens = { home: document.getElementById('screenHome'), studio: document.getElementById('screenStudio') };
-  const show = (name) => Object.entries(screens).forEach(([k, el]) => el.classList.toggle('is-on', k === name));
+  const show = (name) => {
+    Object.entries(screens).forEach(([k, el]) => el.classList.toggle('is-on', k === name));
+    document.getElementById('app').classList.toggle('is-studio', name === 'studio');
+  };
 
   let consoleHost = document.getElementById('consoleHost');
   if (!consoleHost) {

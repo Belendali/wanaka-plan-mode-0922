@@ -1,9 +1,9 @@
 /* ── home: the hero, the idea box, what's trending ───────────── */
-.hero{position:relative;padding:60px 325px 24px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.hero{position:relative;padding:60px clamp(40px,14vw,325px) 24px;display:flex;flex-direction:column;align-items:center;gap:24px}
 .hero__art{position:absolute;left:0;right:0;top:0;width:100%;height:530px;object-fit:cover;object-position:50% 42%;pointer-events:none}
 .hero__fade{position:absolute;left:0;right:0;top:280px;height:250px;pointer-events:none;
   background:linear-gradient(180deg,rgba(20,20,20,0) 0%,rgba(20,20,20,.86) 62%,var(--bg) 100%)}
-.hero__title{position:relative;margin:0;padding-top:236px;font-size:48px;line-height:72px;font-weight:500;text-align:center}
+.hero__title{position:relative;margin:0;padding-top:236px;font-size:clamp(32px,3.4vw,48px);line-height:1.5;font-weight:500;text-align:center;white-space:nowrap}
 .composer{position:relative;width:100%;max-width:1070px;min-height:160px;padding:19px 23px;
   border:1px solid var(--line);border-radius:var(--r-lg);background:var(--glass);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -25,9 +25,9 @@
   color:var(--ink);font-size:14px;font-weight:500;line-height:normal;transition:background .15s,color .15s}
 .planbtn:hover{background:rgba(255,255,255,.2)}
 .planbtn.is-on{background:#fff;color:var(--ink-on-light)}
-.plantip{position:absolute;right:0;bottom:calc(100% + 10px);width:272px;padding:12px 14px;border-radius:12px;
+.plantip{position:absolute;right:0;top:calc(100% + 10px);width:272px;padding:12px 14px;border-radius:12px;
   background:#16161a;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 28px rgba(0,0,0,.5);
-  opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:20}
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:20}
 .planwrap:hover .plantip,.planbtn:focus-visible + .plantip{opacity:1;visibility:visible;transform:none}
 .plantip b{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .plantip p{margin:0 0 6px;font-size:12px;line-height:18px;color:rgba(255,255,255,.66)}
@@ -69,3 +69,6 @@
 .gcard__stat{display:flex;align-items:center;gap:4px;font-size:12px;line-height:16px;color:var(--ink-40)}
 .gcard__stat img{opacity:.4}
 .newproj{padding:0 20px;white-space:nowrap;font-size:13px}
+
+/* the tooltip, as drawn: a rule above the last line */
+.plantip em{display:block;padding-top:8px;border-top:1px dashed rgba(255,255,255,.18)}

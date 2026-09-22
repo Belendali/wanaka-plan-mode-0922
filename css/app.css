@@ -5,6 +5,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 button,input,textarea{font-family:inherit;color:inherit}
 button{cursor:pointer}
 .app{display:grid;grid-template-columns:200px minmax(0,1fr);height:100vh}
+.app.is-studio{grid-template-columns:minmax(0,1fr)}
+.app.is-studio .side{display:none}
 .screen{display:none;min-width:0;height:100vh;overflow:hidden}
 .screen.is-on{display:block}
 .screen--home{overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.14) transparent}

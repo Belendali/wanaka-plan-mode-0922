@@ -12,77 +12,118 @@ const Studio = (() => {
   const push = (node) => { thread.appendChild(node); thread.scrollTop = thread.scrollHeight; return node; };
 
   const shell = () => `
+    <!-- top bar (Figma 48075:32661) -->
+    <header class="topbar">
+      <div class="topbar__l">
+        <button class="tchip tchip--icon"><img src="assets/icon/tb-home.svg" alt="Home" width="16" height="16"></button>
+        <span class="tbar__rule"></span>
+        <button class="tchip">Main<img src="assets/icon/tb-dots.svg" alt="" width="14" height="14"></button>
+      </div>
+      <div class="topbar__c">
+        <div class="tools">
+          <button class="tool2 is-on"><img src="assets/icon/tb-cursor.svg" alt="Select" width="16" height="16"></button>
+          <button class="tool2"><img src="assets/icon/tb-hand.svg" alt="Pan" width="16" height="16"></button>
+          <span class="tbar__rule"></span>
+          <button class="tool2"><img src="assets/icon/tb-move.svg" alt="Move" width="16" height="16"></button>
+          <button class="tool2"><img src="assets/icon/tb-rotate.svg" alt="Rotate" width="16" height="16"></button>
+          <button class="tool2 is-on"><img src="assets/icon/tb-scale.svg" alt="Scale" width="16" height="16"></button>
+          <span class="tbar__rule"></span>
+          <button class="tool2"><img src="assets/icon/tb-add.svg" alt="Add" width="16" height="16"></button>
+        </div>
+        <div class="modes2">
+          <button class="modes2__b is-on"><img src="assets/icon/tb-build.svg" alt="" width="16" height="16">Build</button>
+          <button class="modes2__b"><img src="assets/icon/tb-preview.svg" alt="" width="16" height="16">Preview</button>
+        </div>
+      </div>
+      <div class="topbar__r">
+        <button class="tchip tchip--solid"><img src="assets/icon/tb-friend.svg" alt="" width="16" height="16">Multiplayer</button>
+        <button class="tchip tchip--publish"><img src="assets/icon/tb-publish.svg" alt="" width="16" height="16">Publish</button>
+        <span class="tcredits">
+          <span class="tchip tchip--light"><img src="assets/icon/tb-crown.svg" alt="" width="14" height="14">Upgrade</span>
+          <span class="tcoin"><img src="assets/img/coin.png" alt="" width="16" height="16">320</span>
+        </span>
+        <span class="thistory">
+          <img src="assets/icon/tb-history.svg" alt="" width="16" height="16">
+          <img src="assets/icon/tb-undo.svg" alt="" width="16" height="16">
+          <img src="assets/icon/tb-redo.svg" alt="" width="16" height="16">
+          <img src="assets/icon/tb-file.svg" alt="" width="16" height="16">
+        </span>
+      </div>
+    </header>
+
+    <!-- the tool rail (Figma 48075:32864) -->
+    <nav class="rail">
+      <span class="rail__set">
+        ${[1, 2, 3, 4, 5, 6].map((k) => `<button class="rail__b"><img src="assets/icon/rail-${k}.svg" alt="" width="20" height="20"></button>`).join('')}
+      </span>
+      <img class="rail__me" src="assets/img/rail-avatar.png" alt="" width="28" height="28">
+    </nav>
+
     <section class="stage">
       <span class="stage__sky"></span><span class="stage__grid"></span>
       <div class="roomhost" id="roomhost" hidden></div>
-      <div class="stage__bar">
-        <div class="proj"><span class="proj__badge">W</span><span class="proj__name">Toy house explorer</span></div>
-        <div class="stage__tools">
-          <button class="tool">Multiplayer</button>
-          <button class="tool">Resume</button>
-        </div>
-      </div>
+      <svg class="gizmo" viewBox="0 0 96 93" aria-hidden="true">
+        <g stroke-width="2" fill="none">
+          <path d="M48 62 48 26" stroke="#4d8bff"/><path d="M48 62 20 46" stroke="#2fbf6b"/><path d="M48 62 80 46" stroke="#ff4d5e"/>
+        </g>
+        <circle cx="48" cy="24" r="8" fill="#4d8bff"/><text x="48" y="28" text-anchor="middle" font-size="9" fill="#fff">Z</text>
+        <circle cx="18" cy="44" r="7" fill="#2fbf6b" opacity=".85"/>
+        <circle cx="82" cy="44" r="8" fill="#ff4d5e"/><text x="82" y="48" text-anchor="middle" font-size="9" fill="#fff">X</text>
+        <circle cx="48" cy="70" r="7" fill="#6f7681" opacity=".7"/>
+      </svg>
       <div class="stage__empty"><b>Nothing built yet</b><span>The plan comes first — approve it and the team starts.</span></div>
     </section>
+
+    <!-- the chat (Figma 48075:32772) -->
     <aside class="chat">
-      <div class="chat__modes">
-        <div class="modes">
-          <button class="modes__b is-on"><img src="assets/icon/build.svg" alt="" width="16" height="16">Build</button>
-          <button class="modes__b"><img src="assets/icon/preview.svg" alt="" width="16" height="16">Preview</button>
-        </div>
-        <button class="publish"><img src="assets/icon/publish.svg" alt="" width="16" height="16">publish</button>
-      </div>
-      <div class="chat__head">
-        <button class="chat__name"><span>Toy house explorer</span><img src="assets/icon/chat-name-arrow.svg" alt="" width="16" height="16"></button>
-        <span class="chat__rule"></span>
-        <span class="chat__coins"><img src="assets/img/coin.png" alt="">320</span>
-        <button class="upgrade"><img src="assets/icon/crown.svg" alt="" width="16" height="16">Upgrade</button>
-      </div>
+      <header class="chat__head">
+        <button class="chat__name"><span>Toy house explorer</span><img src="assets/icon/ch-chevron.svg" alt="" width="16" height="16"></button>
+        <button class="chat__new" aria-label="New chat"><img src="assets/icon/ch-plus-sq.svg" alt="" width="12" height="12"></button>
+      </header>
       <div class="thread" id="thread"></div>
-      <form class="chatbox">
-        <div class="chatbox__who"><img src="assets/img/wana.png" alt="">Wanaka 1.0 Lite</div>
-        <textarea placeholder="Ask, plan, build anything..." spellcheck="false"></textarea>
-        <div class="chatbox__row">
-          <span style="display:flex;gap:12px">
-            <button class="iconbtn" type="button" aria-label="Attach"><img src="assets/icon/composer-plus.svg" alt="" width="16" height="16"></button>
-          </span>
-          <button class="chatbox__send" type="button" aria-label="Send">↑</button>
-        </div>
-      </form>
+      <div class="chatfoot">
+        <p class="chatfoot__model"><img class="chatfoot__cat" src="assets/img/wana-work.png" alt="">Wanaka 1.0 Max<i></i></p>
+        <form class="composer2">
+          <textarea placeholder="Ask, plan, build anything..." spellcheck="false"></textarea>
+          <div class="composer2__row">
+            <span class="composer2__left">
+              <button class="round" type="button" aria-label="Attach"><img src="assets/icon/ch-plus-line.svg" alt="" width="12" height="12"></button>
+              <button class="round" type="button" aria-label="Cut"><img src="assets/icon/ch-scissors.svg" alt="" width="32" height="32"></button>
+              <button class="model2" type="button">Wanaka 1.0 Max<img src="assets/icon/ch-arrowdown.svg" alt="" width="16" height="16"></button>
+            </span>
+            <span class="composer2__right">
+              <button class="planpill" type="button">Plan</button>
+              <button class="round round--send" type="button" aria-label="Send"><i></i></button>
+            </span>
+          </div>
+        </form>
+      </div>
     </aside>`;
 
   /* what the team does after you press Plan mode */
   const script = (idea, onPlanReady) => {
-    push(el(`<div class="msg msg--you">${idea}
-      <span class="msg__tools"><img src="assets/icon/msg-copy.svg" alt="" width="20" height="20"><img src="assets/icon/msg-edit.svg" alt="" width="20" height="20"></span></div>`));
+    push(el(`<p class="rule"><i></i>Plan mode on · your game team is in</p>`));
+    push(el(`<div class="msg msg--you"><span class="bub">${idea}</span>
+      <span class="msg__tools"><img src="assets/icon/ch-copy.svg" alt="" width="16" height="16"><img src="assets/icon/ch-edit.svg" alt="" width="16" height="16"></span></div>`));
 
-    at(500, () => {
-      const think = push(el(`<p class="msg thinking">Thinking<i></i></p>`));
-      let n = 0;
-      const dots = setInterval(() => { think.querySelector('i').textContent = '.'.repeat(n++ % 4); }, 320);
-      at(1500, () => { clearInterval(dots); think.remove(); });
-    });
+    at(700, () => push(el(`
+      <div class="msg wana"><img src="assets/img/planner-av.png" alt="">
+        <div><b>Planner Wana</b><p>A toy house with a secret — love it. I've called in the team; we'll draft the whole plan for you to check before anything gets built.</p></div>
+      </div>`)));
 
     at(1500, () => {
-      const card = push(el(`
-        <div class="msg deep">
-          <button class="deep__head" type="button">Deep Thinking…<img src="assets/icon/chevron-up.svg" alt="" width="16" height="16"></button>
-          <div class="deep__body">
-            <p style="margin:0 0 12px">A toy house with a secret — love it. I've called in the team; we'll draft the whole plan for you to check before anything gets built.</p>
-            <ul class="tasks"></ul>
-          </div>
-        </div>`));
-      card.querySelector('.deep__head').onclick = () => card.classList.toggle('is-shut');
-      const list = card.querySelector('.tasks');
-      PLAN_STEPS.forEach((s, i) => {
+      const rows = PLAN_STEPS.map((t) => push(el(`
+        <p class="step2"><img src="assets/icon/step-todo.svg" alt="" width="16" height="16">${t}</p>`)));
+      PLAN_STEPS.forEach((t, i) => {
         at(i * 900, () => {
-          const row = list.appendChild(el(`<li class="task is-live"><img src="assets/icon/task-active.svg" alt="" width="12" height="12">${s}</li>`));
+          rows[i].classList.add('is-run');
+          rows[i].querySelector('img').src = 'assets/icon/step-run.svg';
           thread.scrollTop = thread.scrollHeight;
-          at(700, () => {
-            row.classList.remove('is-live');
-            row.classList.add('is-done');
-            row.querySelector('img').src = 'assets/icon/task-done.svg';
-          });
+        });
+        at(i * 900 + 700, () => {
+          rows[i].classList.remove('is-run');
+          rows[i].classList.add('is-done');
+          rows[i].querySelector('img').src = 'assets/icon/step-done.svg';
         });
       });
     });
