@@ -99,3 +99,36 @@
 .chatbox__row .iconbtn{width:20px;height:20px;opacity:.6}
 .chatbox__send{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:50%;background:#fff;color:#111}
 .buildbar{display:block;margin:8px 0 0}
+
+/* ── the crew at work, over the canvas ───────────────────────── */
+.crew{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);width:min(636px,72%);
+  padding:18px 24px 16px;border-radius:var(--r-lg);background:rgba(34,30,31,.88);
+  backdrop-filter:blur(20px);box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.08);
+  animation:crewIn .4s cubic-bezier(.3,.9,.3,1) both}
+@keyframes crewIn{from{opacity:0;transform:translate(-50%,14px)}}
+.crew__min{position:absolute;left:50%;top:10px;width:18px;height:12px;margin-left:-9px;border:0;background:none;padding:0}
+.crew__min::before{content:'';position:absolute;left:2px;right:2px;top:5px;height:2.5px;border-radius:2px;background:rgba(255,255,255,.8)}
+.crew__row{display:flex;gap:16px;justify-content:center}
+.crew__cat{position:relative;flex:none;width:100px;height:100px;padding:0;border:0;border-radius:var(--r-md);
+  background:none;transition:background .15s}
+.crew__cat:first-child{margin-right:24px}
+.crew__cat img{width:88px;height:88px;margin:6px;object-fit:contain;opacity:.5;filter:saturate(.6);transition:opacity .2s,filter .2s}
+.crew__cat.is-on{background:#3a3536}
+.crew__cat.is-on img{opacity:1;filter:none}
+.crew__cat:hover{background:rgba(58,53,54,.55)}
+.crew__cat:hover img{opacity:1;filter:none}
+.crew__line{margin:8px 0 0;padding:10px 16px;border-radius:var(--r-md);background:#3a3536;
+  font-size:14px;line-height:21px;color:rgba(255,255,255,.8)}
+
+/* the steps in the chat */
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;align-items:center;gap:10px;margin:0;font-size:14px;line-height:20px;color:rgba(255,255,255,.4)}
+.step i{position:relative;width:14px;height:14px;flex:none;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.step.is-busy{color:rgba(255,255,255,.9)}
+.step.is-busy i{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.2);border:1.5px solid transparent;border-top-color:var(--lime);
+  animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.step.is-done{color:rgba(255,255,255,.75)}
+.step.is-done i{box-shadow:none}
+.step.is-done i::after{content:'';position:absolute;left:4px;top:0;width:5px;height:9px;
+  border:solid var(--lime);border-width:0 2px 2px 0;transform:rotate(42deg)}

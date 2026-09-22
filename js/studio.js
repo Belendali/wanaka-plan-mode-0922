@@ -102,15 +102,86 @@ const Studio = (() => {
     });
   };
 
+  /* the crew bar: one cat works at a time, the line says what it is doing */
+  const CREW = ['planner', 'developer', 'artist', 'audio', 'tester'];
+  const CREW_LINE = {
+    planner: 'Planner: plan approved — keeping the crew on track',
+    developer: 'Developer: Writing your game logic...',
+    artist: 'Artist: Modelling the bedroom and the toys...',
+    audio: 'Musician: Scoring a theme loop for the bedroom...',
+    tester: 'Tester: Playing it through before you do...',
+  };
+  const crewbar = (active) => {
+    const stage = document.querySelector('.stage');
+    let bar = document.querySelector('.crew');
+    if (!bar) {
+      bar = el(`<div class="crew">
+        <button class="crew__min" type="button" aria-label="Minimise"></button>
+        <div class="crew__row">${CREW.map((k) => `
+          <button class="crew__cat" type="button" data-k="${k}"><img alt="${k}"></button>`).join('')}</div>
+        <p class="crew__line"></p>
+      </div>`);
+      stage.appendChild(bar);
+      bar.querySelector('.crew__min').onclick = () => bar.remove();
+      bar.querySelectorAll('.crew__cat').forEach((c) => {
+        c.onmouseenter = () => { bar.querySelector('.crew__line').textContent = CREW_LINE[c.dataset.k]; };
+        c.onmouseleave = () => { bar.querySelector('.crew__line').textContent = CREW_LINE[bar.dataset.active]; };
+      });
+    }
+    bar.dataset.active = active;
+    bar.querySelectorAll('.crew__cat').forEach((c) => {
+      const on = c.dataset.k === active;
+      c.classList.toggle('is-on', on);
+      c.querySelector('img').src = `assets/img/crew-${c.dataset.k}${on ? '.webp' : '-still.png'}`;
+    });
+    bar.querySelector('.crew__line').textContent = CREW_LINE[active];
+    return bar;
+  };
+
   const built = () => {
-    push(el(`
+    clear();
+    push(el(`<div class="msg msg--you">Approve and build now</div>`));
+    at(400, () => push(el(`
       <div class="msg wana"><img src="assets/img/wana-planner.webp" alt="">
-        <div><b>Planner Wana</b><p>Approved. The team is on it — building v1 now. I'll ping you the moment it's playable.</p>
-          <span class="buildbar"><i></i></span>
-          <p class="buildnote" style="margin-top:8px">Building · 4 rooms · 6 assets</p>
-        </div>
-      </div>`));
-    document.querySelector('.stage__empty').innerHTML = '<b>Building v1</b><span>Rooms and assets are going in — you can watch here.</span>';
+        <div><b>Planner Wana</b><p>Cool, my crew is working for you...</p></div>
+      </div>`)));
+
+    const STEPS = [['developer', 'Game logic'], ['artist', 'Models and scene'],
+                   ['audio', 'Theme music'], ['tester', 'Playtest']];
+    let rows = [];
+    at(800, () => {
+      const list = push(el(`<div class="msg steps">${STEPS
+        .map(([, t], i) => `<p class="step${i === 0 ? ' is-busy' : ''}"><i></i>${t}</p>`).join('')}</div>`));
+      rows = [...list.querySelectorAll('.step')];
+      document.querySelector('.stage__empty').innerHTML = '<b>Building v1</b><span>The crew is at work — the room goes in piece by piece.</span>';
+      crewbar('developer');
+    });
+
+    // each cat takes its turn; the one working is the only one in colour
+    STEPS.forEach(([who], i) => {
+      at(900 + i * 5000, () => {
+        crewbar(who);
+        rows.forEach((r, k) => r.classList.toggle('is-busy', k === i));
+      });
+      at(900 + (i + 1) * 5000 - 200, () => {
+        rows[i]?.classList.remove('is-busy');
+        rows[i]?.classList.add('is-done');
+      });
+    });
+
+    // version 1.0 is up
+    at(900 + STEPS.length * 5000, () => {
+      document.querySelector('.crew')?.remove();
+      document.querySelector('.stage__empty').innerHTML = '<b>Version 1.0</b><span>Five stars to find, one hoop to reach.</span>';
+      push(el(`
+        <div class="msg wana"><img src="assets/img/crew-tester.webp" alt="">
+          <div><b>Tester Wana</b><p>Version 1.0 is up and it holds together — five stars to find, one hoop to reach. Give it a go.</p></div>
+        </div>`));
+      push(el(`
+        <div class="msg plancard"><img src="${PLAN.cover}" alt="">
+          <div><em>Version 1.0</em><b>${PLAN.title}: ${PLAN.sub}</b><button type="button">▶ Play</button></div>
+        </div>`));
+    });
   };
 
   const open = (idea, onPlanReady) => {
